@@ -1,0 +1,202 @@
+  <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mariano Torossian, Nicolas">
+    <title>Trabajo Práctico</title>
+
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      body {
+        font-family: 'Montserrat', serif;
+        background: white;
+      }
+      
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+      .player{ 
+      	float: none;
+	    clear: both;
+	    width: 100%;
+	    position: relative;
+	    padding-bottom: 56.25%;
+	    padding-top: 25px;
+	    height: 0;
+	  }
+	  .player iframe {
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    width: 100%;
+	    height: 100%;
+	  }
+    </style>
+
+    <link href="estilos.css" rel="stylesheet">
+  </head>
+  <body>
+    
+<div class="col-lg-8 mx-auto p-4 py-md-5">
+  <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
+    <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+      <i class="fa-solid fa-code fa-fade fa-2x"></i><span class="fs-4">Trabajo Práctico</span>
+    </a>
+  </header>
+
+  <main>
+    
+
+    <div class="row">
+	    <div class="col-md-2 mb-5">
+	        <div class="fa-4x">
+	          <i class="fa-solid fa-music fa-beat" style="color:darkgrey; --fa-beat-scale: 2.80; --fa-animation-duration:0.45s;"></i>
+	        </div>
+	    </div>
+	    <div class="col-md-10 mb-5">
+	        
+    		<h1><i class="fa-solid fa-record-vinyl"></i> <b>HOUSE</b> <i>MUSIC</i> <i class="fa-solid fa-compact-disc"></i></h1>
+
+    		<p class="fs-5 col-md-8">Este sitio propone encontrar gemas de la música house 
+    		</p>
+	    </div>
+	</div>
+
+    <hr class="">
+
+	<div class="row">
+	    <div id="player"></div>
+	</div>
+
+    <script>
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          videoId: 'qzL9xn2fjDQ',
+          events: {
+            'width':'100%',
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      // 4. The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+        event.target.playVideo();
+      }
+
+      // 5. The API calls this function when the player's state changes.
+      //    The function indicates that when playing a video (state=1),
+      //    the player should play for six seconds and then stop.
+      var done = false;
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING && !done) {
+          setTimeout(stopVideo, 6000);
+          done = true;
+        }
+      }
+      function stopVideo() {
+        player.stopVideo();
+      }
+    </script>
+
+    <hr class="">
+    <div class="row g-5">
+
+      <div class="col-md-6">
+        <h2>Alumnos</h2>
+        <p>Integrantes del grupo:</p>
+        <ul class="icon-list ps-0">
+          <li class="d-flex align-items-start mb-1">Mariano</li>
+          <li class="d-flex align-items-start mb-1">Nicolás</li>
+          <li class="d-flex align-items-start mb-1">Daniel</li>
+        </ul>
+      </div>
+
+      <div class="col-md-6">
+        <h2>Tutor</h2>
+        <h4>Emiliano Sebastian Spinoso</h4>
+        <p></p>
+        <ul class="icon-list ps-0">
+          <li class="d-flex align-items-start mb-1"><a href="mailto:marianotorossian@gmail.com" rel="noopener" target="_blank">Contactanos!</a></li>
+          <li class="text-muted d-flex align-items-start mb-1">Versión 0.1</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+  <footer class="pt-5 my-5 text-muted border-top">
+    Desarrollado por Mariano, Nicolás &middot; &copy; 2022
+  </footer>
+</div>
+
+
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+      
+  </body>
+</html>
